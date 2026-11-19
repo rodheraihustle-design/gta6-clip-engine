@@ -16,6 +16,7 @@ def ts(t):
     return f"{h}:{m:02d}:{s:05.2f}"
 
 def esc(s):
+    s = "".join(ch for ch in s if ord(ch) < 0x2190).strip()
     return s.replace("{", "(").replace("}", ")").replace("\n", " ")
 
 def build_ass(words, hook, dur, accent, path):
