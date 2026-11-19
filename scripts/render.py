@@ -59,38 +59,44 @@ def main():
     plan = json.load(open(sys.argv[1])); out = sys.argv[2]; os.makedirs(out, exist_ok=True)
     from faster_whisper import WhisperModel
     model = WhisperModel("small.en", device="cpu", compute_type="int8")
+    done = []
     for c in plan["clips"]:
-        raw = os.path.join(out, c["id"] + "_raw.mp4")
-        sh(["yt-dlp", c["vod"], "-f", "best[height<=1080]/best", "--download-sections",
-            f"*{c['start']}-{c['end']}", "--force-keyframes-at-cuts", "-o", raw])
-        dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", raw],
-                                   capture_output=True, text=True).stdout.strip())
-        segs, _ = model.transcribe(raw, word_timestamps=True, vad_filter=True)
-        words = [{"start": w.start, "end": w.end, "w": w.word} for s in segs for w in (s.words or [])]
-        ass = os.path.join(out, c["id"] + ".ass")
-        build_ass(words, c.get("hook", ""), dur, c.get("accent", "&H0000E5FF"), ass)
-        if c.get("layout") == "split":
-            x, y0, w, h = c["cam"]  # facecam box as fractions of the source frame
-            camh = int(1080 * (h * 9) / (w * 16) / 2) * 2  # keep cam aspect at 1080 wide
-            camh = min(camh, 760); gh = 1920 - camh
-            vf = (f"[0:v]split=2[a][b];[a]crop=iw*{w}:ih*{h}:iw*{x}:ih*{y0},scale=1080:{camh},setsar=1[cam];"
-                  f"[b]scale=-2:{gh},crop=1080:{gh},setsar=1[game];[cam][game]vstack=2,"
-                  f"ass={ass}:fontsdir=fonts,fps=30,format=yuv420p[v]")
-        else:
-            if c.get("layout") == "zoom":
-                fg = "[0:v]scale=-2:1100,crop=1080:1100[fg]"; y = "(H-h)/2-60"
-            else:
-                fg = "[0:v]scale=1080:-2[fg]"; y = "(H-h)/2-40"
-            vf = (f"[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=24:2,"
-                  f"eq=brightness=-0.18:saturation=1.2[bg];{fg};[bg][fg]overlay=0:{y},"
-                  f"ass={ass}:fontsdir=fonts,fps=30,format=yuv420p[v]")
-        final = os.path.join(out, c["id"] + ".mp4")
-        sh(["ffmpeg", "-y", "-i", raw, "-filter_complex", vf, "-map", "[v]", "-map", "0:a?",
-            "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-c:a", "aac", "-b:a", "160k",
-            "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-movflags", "+faststart", final])
-        sh(["ffmpeg", "-y", "-ss", "1.5", "-i", final, "-frames:v", "1", "-vf", "scale=540:-2", final.replace(".mp4", ".jpg")])
-        os.remove(raw)
-        c["duration"] = round(dur, 1); c["transcript"] = " ".join(w["w"].strip() for w in words)
+      try:
+          raw = os.path.join(out, c["id"] + "_raw.mp4")
+          sh(["yt-dlp", c["vod"], "-f", "best[height<=1080]/best", "--download-sections",
+              f"*{c['start']}-{c['end']}", "--force-keyframes-at-cuts", "-o", raw])
+          dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", raw],
+                                     capture_output=True, text=True).stdout.strip())
+          segs, _ = model.transcribe(raw, word_timestamps=True, vad_filter=True)
+          words = [{"start": w.start, "end": w.end, "w": w.word} for s in segs for w in (s.words or [])]
+          ass = os.path.join(out, c["id"] + ".ass")
+          build_ass(words, c.get("hook", ""), dur, c.get("accent", "&H0000E5FF"), ass)
+          if c.get("layout") == "split":
+              x, y0, w, h = c["cam"]  # facecam box as fractions of the source frame
+              camh = int(1080 * (h * 9) / (w * 16) / 2) * 2  # keep cam aspect at 1080 wide
+              camh = min(camh, 760); gh = 1920 - camh
+              vf = (f"[0:v]split=2[a][b];[a]crop=iw*{w}:ih*{h}:iw*{x}:ih*{y0},scale=1080:{camh},setsar=1[cam];"
+                    f"[b]scale=-2:{gh},crop=1080:{gh},setsar=1[game];[cam][game]vstack=2,"
+                    f"ass={ass}:fontsdir=fonts,fps=30,format=yuv420p[v]")
+          else:
+              if c.get("layout") == "zoom":
+                  fg = "[0:v]scale=-2:1100,crop=1080:1100[fg]"; y = "(H-h)/2-60"
+              else:
+                  fg = "[0:v]scale=1080:-2[fg]"; y = "(H-h)/2-40"
+              vf = (f"[0:v]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=24:2,"
+                    f"eq=brightness=-0.18:saturation=1.2[bg];{fg};[bg][fg]overlay=0:{y},"
+                    f"ass={ass}:fontsdir=fonts,fps=30,format=yuv420p[v]")
+          final = os.path.join(out, c["id"] + ".mp4")
+          sh(["ffmpeg", "-y", "-i", raw, "-filter_complex", vf, "-map", "[v]", "-map", "0:a?",
+              "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-c:a", "aac", "-b:a", "160k",
+              "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-movflags", "+faststart", final])
+          sh(["ffmpeg", "-y", "-ss", "1.5", "-i", final, "-frames:v", "1", "-vf", "scale=540:-2", final.replace(".mp4", ".jpg")])
+          os.remove(raw)
+          c["duration"] = round(dur, 1); c["transcript"] = " ".join(w["w"].strip() for w in words)
+          done.append(c)
+      except Exception as e:
+        print("CLIP FAILED", c["id"], e, flush=True)
+    plan["clips"] = done
     json.dump(plan, open(os.path.join(out, "rendered.json"), "w"), indent=1)
 
 if __name__ == "__main__":
