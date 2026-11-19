@@ -5,7 +5,7 @@ plan.json: {"clips":[{"id":"kai_001","vod":"<url>","start":123.4,"end":171.0,
 """
 import json, os, subprocess, sys
 
-FONT = "Montserrat ExtraBold"
+FONT = "Poppins ExtraBold"
 
 def sh(cmd):
     print("+", " ".join(map(str, cmd)), flush=True)

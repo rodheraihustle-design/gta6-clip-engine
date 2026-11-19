@@ -5,9 +5,10 @@ runs:
     - uses: actions/setup-python@v5
       with: {python-version: "3.11"}
     - shell: bash
+      env: {GH_TOKEN: "${{ github.token }}"}
       run: |
         sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
         pip install -q yt-dlp faster-whisper
-        curl -sL -o td.zip https://github.com/lay295/TwitchDownloader/releases/download/1.55.7/TwitchDownloaderCLI-1.55.7-Linux-x64.zip
-        unzip -oq td.zip && chmod +x TwitchDownloaderCLI || echo "TwitchDownloader not available"
-        mkdir -p fonts && curl -sL -o fonts/Montserrat.ttf "https://github.com/google/fonts/raw/main/ofl/montserrat/Montserrat%5Bwght%5D.ttf"
+        gh release download -R lay295/TwitchDownloader --pattern '*CLI*Linux-x64.zip' -O td.zip
+        unzip -oq td.zip && chmod +x TwitchDownloaderCLI
+        mkdir -p fonts && curl -sfL -o fonts/Poppins-ExtraBold.ttf "https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-ExtraBold.ttf"
