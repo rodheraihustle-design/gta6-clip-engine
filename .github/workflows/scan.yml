@@ -6,7 +6,9 @@ on:
       hours: {description: "How many recent hours to scan", default: "3"}
       top: {description: "Number of candidates", default: "8"}
 permissions: {contents: write}
-concurrency: {group: scan-${{ github.event.inputs.target }}, cancel-in-progress: false}
+concurrency:
+  group: scan-${{ github.event.inputs.target }}
+  cancel-in-progress: false
 jobs:
   scan:
     runs-on: ubuntu-latest
