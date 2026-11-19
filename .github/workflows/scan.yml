@@ -24,7 +24,7 @@ jobs:
           gh release create "$TAG" out/*.jpg out/candidates.json --title "$TAG" --notes "${{ inputs.target }}" --prerelease
           git config user.name clip-bot; git config user.email clip-bot@users.noreply.github.com
           git fetch origin data || true
-          git checkout -B data origin/data 2>/dev/null || git checkout --orphan data
-          git rm -rf --cached . >/dev/null 2>&1 || true
-          mkdir -p scans && cp out/candidates.json "scans/$TAG.json"
-          git add scans && git commit -m "$TAG" && git push origin data
+          if git rev-parse -q --verify origin/data >/dev/null; then git worktree add ../pub origin/data; else git worktree add --detach ../pub && (cd ../pub && git checkout --orphan data && git rm -rfq .); fi
+          cp -r out ../pub/out_tmp 2>/dev/null; cd ../pub
+          mkdir -p scans && cp out_tmp/candidates.json "scans/$TAG.json"
+          rm -rf out_tmp; git add scans && git commit -m "$TAG" && git push origin HEAD:data

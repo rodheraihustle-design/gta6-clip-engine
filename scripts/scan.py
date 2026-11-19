@@ -30,7 +30,7 @@ def chat(vid, begin, end, out):
     for c in data.get("comments", []):
         t = c.get("content_offset_seconds")
         body = (c.get("message") or {}).get("body", "")
-        if t is not None:
+        if t is not None and not body.strip().startswith("!"):
             msgs.append((float(t), body))
     return msgs
 
