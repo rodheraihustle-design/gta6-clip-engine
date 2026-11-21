@@ -22,4 +22,4 @@ jobs:
           if git rev-parse -q --verify origin/media >/dev/null; then git worktree add ../pub origin/media; else git worktree add --detach ../pub && (cd ../pub && git checkout --orphan media && git rm -rfq .); fi
           cp -r out ../pub/out_tmp 2>/dev/null; cd ../pub
           mkdir -p clips && cp out_tmp/*.mp4 out_tmp/*.jpg out_tmp/rendered.json clips/ && mv clips/rendered.json "clips/rendered-${{ github.run_id }}.json"
-          rm -rf out_tmp; git add clips && git commit -m "render ${{ github.run_id }}" && git push origin HEAD:media
+          rm -rf out_tmp; git add clips && git commit -m "render ${{ github.run_id }}" && for i in 1 2 3 4 5; do git push origin HEAD:media && break; git fetch origin media && git rebase origin/media; sleep 3; done
