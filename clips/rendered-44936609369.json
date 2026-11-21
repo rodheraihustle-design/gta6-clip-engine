@@ -1,0 +1,38 @@
+{
+ "clips": [
+  {
+   "id": "rage_10m_001",
+   "streamer": "YourRAGE",
+   "campaign": "yourrage_pool",
+   "vod": "https://www.twitch.tv/videos/2935679784",
+   "start": 2515.0,
+   "end": 2562.0,
+   "teaser": [
+    2521.0,
+    2528.5
+   ],
+   "hook": "HIS WORST CLIP JUST HIT 10 MILLION VIEWS",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "duration": 54.5,
+   "transcript": "After some *** y 'all baited me to do me looking dumb as *** 10ms on that whole out of all And why does our bleacher reports? We have 10 million views After some *** y 'all baited me to do me looking dumb as *** 10ms on that whole out of all the clips me look Out of any clip I'm tripping. Yeah, I just see myself tight"
+  },
+  {
+   "id": "rage_tomfoolery_001",
+   "streamer": "YourRAGE",
+   "campaign": "yourrage_pool",
+   "vod": "https://www.twitch.tv/videos/2935679784",
+   "start": 3628.0,
+   "end": 3669.0,
+   "teaser": [
+    3659.5,
+    3665.5
+   ],
+   "hook": "HE PROMISED NO MORE TOMFOOLERY IN GTA 6",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "duration": 47.0,
+   "transcript": "No more Tom for the return. It's like genuinely no more Tom for Lee. Let's lock it. Let's lock it Yeah, this *** looks so good, bro *** No more Tom for the return. It's like genuinely no more Tom for Lee. Let's lock it. Let's lock it"
+  }
+ ]
+}
