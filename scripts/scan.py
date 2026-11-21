@@ -104,7 +104,16 @@ def main():
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     url = resolve_vod(a.target); info = vod_info(url)
-    dur = info["duration"]; begin = max(0, dur - a.hours * 3600); end = dur
+    dur = info["duration"]
+    if not dur:  # e.g. Kick VODs report no duration in metadata
+        try:
+            m3u8 = sh(["yt-dlp", "-g", url]).strip().splitlines()[0]
+            dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", m3u8],
+                                       capture_output=True, text=True).stdout.strip() or 0)
+        except Exception:
+            dur = 0
+        info["duration"] = dur
+    begin = max(0, dur - a.hours * 3600); end = dur
     if "twitch.tv" in url:
         msgs = chat(info["id"], begin, end, os.path.join(a.out, "chat.json"))
     elif "youtube" in url or "youtu.be" in url:

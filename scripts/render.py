@@ -3,7 +3,9 @@ Usage: python render.py plan.json out_dir
 plan.json: {"clips":[{"id":"kai_001","vod":"<url>","start":123.4,"end":171.0,
              "hook":"KAI DIDN'T SEE THIS COMING", "layout":"fit"|"zoom", "accent":"&H0000E5FF"}]}
 """
-import json, os, subprocess, sys
+import json, os, re, subprocess, sys
+
+BLEEP = re.compile(r"\b(n+i+g+(g|a|e|u)\w*|f+a+g+\w*|r+e+t+a+r+d\w*|f+u+c+k\w*|s+h+i+t+\w*|b+i+t+c+h\w*|c+o+c+k\w*|d+i+c+k\w*|p+u+s+s+y\w*|r+a+p+e\w*|j+e+w+s?)\b", re.I)
 
 FONT = "Poppins ExtraBold"
 
@@ -65,10 +67,26 @@ def main():
           raw = os.path.join(out, c["id"] + "_raw.mp4")
           sh(["yt-dlp", c["vod"], "-f", "best[height<=1080]/best", "--download-sections",
               f"*{c['start']}-{c['end']}", "--force-keyframes-at-cuts", "-o", raw])
+          if c.get("teaser"):  # cold open: replay the payoff for ~2s before the build-up
+              ts0, ts1 = c["teaser"][0] - c["start"], c["teaser"][1] - c["start"]
+              cold = os.path.join(out, c["id"] + "_cold.mp4")
+              sh(["ffmpeg", "-loglevel", "error", "-y", "-i", raw, "-filter_complex",
+                  f"[0:v]trim={ts0}:{ts1},setpts=PTS-STARTPTS[tv];[0:a]atrim={ts0}:{ts1},asetpts=PTS-STARTPTS[ta];"
+                  f"[0:v]setpts=PTS-STARTPTS[mv];[0:a]asetpts=PTS-STARTPTS[ma];[tv][ta][mv][ma]concat=n=2:v=1:a=1[v][a]",
+                  "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-c:a", "aac", cold])
+              os.replace(cold, raw)
           dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", raw],
                                      capture_output=True, text=True).stdout.strip())
           segs, _ = model.transcribe(raw, word_timestamps=True, vad_filter=True)
           words = [{"start": w.start, "end": w.end, "w": w.word} for s in segs for w in (s.words or [])]
+          bad = [(w["start"], w["end"]) for w in words if BLEEP.search(w["w"])]
+          for w in words:
+              if BLEEP.search(w["w"]): w["w"] = " " + "*" * max(3, len(w["w"].strip()) - 1)
+          if bad:  # mute flagged words so clips stay brand-safe
+              cond = "+".join(f"between(t,{a-0.05:.2f},{b+0.05:.2f})" for a, b in bad)
+              muted = os.path.join(out, c["id"] + "_m.mp4")
+              sh(["ffmpeg", "-loglevel", "error", "-y", "-i", raw, "-c:v", "copy", "-af", f"volume=enable='{cond}':volume=0", muted])
+              os.replace(muted, raw)
           ass = os.path.join(out, c["id"] + ".ass")
           build_ass(words, c.get("hook", ""), dur, c.get("accent", "&H0000E5FF"), ass, 360 if c.get("overlay_url") else 470)
           if c.get("layout") == "split":
