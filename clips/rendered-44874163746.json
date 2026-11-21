@@ -1,0 +1,38 @@
+{
+ "clips": [
+  {
+   "id": "jeff_groceries_001",
+   "streamer": "AsianJeff",
+   "campaign": "asianjeff_cpm",
+   "vod": "https://www.twitch.tv/videos/2934513082",
+   "start": 2798.0,
+   "end": 2836.0,
+   "teaser": [
+    2825.0,
+    2829.5
+   ],
+   "hook": "HE HAD ONE JOB: BRING THE GROCERIES",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "duration": 42.5,
+   "transcript": "Bro, why did they get mad at me for hitting myself in the car? *** out. **** Do we have the groceries chat? Got the groceries, right? Yo, we got the groceries, we got the groceries. Alright, we out, we out, we out. Yeah, we out. What's up, motherfucker, pit stall ninja? Are we out to spill? Let's go, let's go No, bro, the groceries, say swear to god Bro, why did they get mad at me for hitting myself in the car? It's NPC's, bro. I already had a bad day today, bro. I'm gonna crash out timing, bro."
+  },
+  {
+   "id": "jeff_password_001",
+   "streamer": "AsianJeff",
+   "campaign": "asianjeff_cpm",
+   "vod": "https://www.twitch.tv/videos/2934513082",
+   "start": 366.0,
+   "end": 398.0,
+   "teaser": [
+    372.0,
+    376.0
+   ],
+   "hook": "DID HE JUST LEAK HIS PASSWORD ON STREAM?",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "duration": 36.0,
+   "transcript": "Did you guys see my password? Did you guys see my password? Oh my god, did I just leak my password? Yes, okay, what's my password then? No, no, no y 'all are lying y 'all are lying say you swear to god Can't see nothing. Okay, so y 'all so that guy was lying to me then"
+  }
+ ]
+}
