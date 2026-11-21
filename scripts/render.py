@@ -21,7 +21,7 @@ def esc(s):
     s = "".join(ch for ch in s if ord(ch) < 0x2190).strip()
     return s.replace("{", "(").replace("}", ")").replace("\n", " ")
 
-def build_ass(words, hook, dur, accent, path, cap_margin=470):
+def build_ass(words, hook, dur, accent, path, cap_margin=470, hook_margin=300, hook_size=84):
     head = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -30,7 +30,7 @@ WrapStyle: 0
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Hook,{FONT},86,&H00FFFFFF,&H00FFFFFF,&H00000000,&HC0000000,1,0,0,0,100,100,0,0,3,18,0,8,70,70,300,1
+Style: Hook,{FONT},{hook_size},&H00FFFFFF,&H00FFFFFF,&H00000000,&HC0000000,1,0,0,0,100,100,0,0,3,16,0,8,40,40,{hook_margin},1
 Style: Cap,{FONT},88,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,7,3,2,60,60,{cap_margin},1
 
 [Events]
@@ -88,13 +88,19 @@ def main():
               sh(["ffmpeg", "-loglevel", "error", "-y", "-i", raw, "-c:v", "copy", "-af", f"volume=enable='{cond}':volume=0", muted])
               os.replace(muted, raw)
           ass = os.path.join(out, c["id"] + ".ass")
-          build_ass(words, c.get("hook", ""), dur, c.get("accent", "&H0000E5FF"), ass, 360 if c.get("overlay_url") else 470)
+          build_ass(words, c.get("hook", ""), dur, c.get("accent", "&H0000E5FF"), ass,
+                    330 if c.get("layout") == "split" else (360 if c.get("overlay_url") else 470),
+                    34 if c.get("layout") == "split" else 300,
+                    68 if c.get("layout") == "split" else 84)
           if c.get("layout") == "split":
               x, y0, w, h = c["cam"]  # facecam box as fractions of the source frame
               camh = int(1080 * (h * 9) / (w * 16) / 2) * 2  # keep cam aspect at 1080 wide
-              camh = min(camh, 760); gh = 1920 - camh
-              vf = (f"[0:v]split=2[a][b];[a]crop=iw*{w}:ih*{h}:iw*{x}:ih*{y0},scale=1080:{camh},setsar=1[cam];"
-                    f"[b]scale=-2:{gh},crop=1080:{gh},setsar=1[game];[cam][game]vstack=2,"
+              top = 320  # clean band for the hook, so text never covers the streamer's face
+              camh = min(camh, 680); gh = 1920 - camh - top
+              vf = (f"[0:v]split=3[a][b][c];[c]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:{top},"
+                    f"boxblur=30:3,eq=brightness=-0.35,setsar=1[band];"
+                    f"[a]crop=iw*{w}:ih*{h}:iw*{x}:ih*{y0},scale=1080:{camh},setsar=1[cam];"
+                    f"[b]scale=-2:{gh},crop=1080:{gh},setsar=1[game];[band][cam][game]vstack=3,"
                     f"ass={ass}:fontsdir=fonts,fps=30,format=yuv420p[v]")
           else:
               if c.get("layout") == "zoom":
