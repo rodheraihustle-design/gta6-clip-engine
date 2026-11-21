@@ -1,0 +1,38 @@
+{
+ "clips": [
+  {
+   "id": "jeff_shoot_001",
+   "streamer": "AsianJeff",
+   "campaign": "asianjeff_cpm",
+   "vod": "https://www.twitch.tv/videos/2934513082",
+   "start": 10667.0,
+   "end": 10712.0,
+   "teaser": [
+    10685.0,
+    10690.0
+   ],
+   "hook": "HE FORGOT HOW TO SHOOT IN GTA 6",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "duration": 50.0,
+   "transcript": "My god, I'm gonna be fighting an NPC and I don't know how to play this *** Wait, how do I how do I shoot again? But this guy better not be me bro My god, I'm gonna be fighting an NPC and I don't know how to play this *** Yo, why are they talking my"
+  },
+  {
+   "id": "jeff_bottom5_001",
+   "streamer": "AsianJeff",
+   "campaign": "asianjeff_cpm",
+   "vod": "https://www.twitch.tv/videos/2934513082",
+   "start": 7899.0,
+   "end": 7940.0,
+   "teaser": [
+    7927.0,
+    7931.0
+   ],
+   "hook": "CHAT CALLED HIM A BOTTOM 5 GTA PLAYER",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "duration": 45.0,
+   "transcript": "How you so ass we got some more it's a yo bro Bottom five gamers dude, it's not what you think it is. How you so ass We got some more. It's AI Think latinos ahead. Oh my god, you know, I'm going Yo, you know, I'm going bro, where they at where"
+  }
+ ]
+}
