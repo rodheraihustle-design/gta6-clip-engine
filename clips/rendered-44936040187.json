@@ -1,0 +1,86 @@
+{
+ "clips": [
+  {
+   "id": "lacy_wakeup_001",
+   "streamer": "Lacy",
+   "campaign": "lacy_pool",
+   "vod": "https://www.twitch.tv/videos/2935059680",
+   "start": 60686.0,
+   "end": 60749.0,
+   "teaser": [
+    60738.0,
+    60748.0
+   ],
+   "hook": "LACY WOKE UP EVERYONE WHO FELL ASLEEP WATCHING HIS STREAM",
+   "layout": "split",
+   "cam": [
+    0.0,
+    0.0,
+    0.256,
+    0.26
+   ],
+   "accent": "&H0000E5FF",
+   "duration": 73.0,
+   "transcript": "let me sleep son who did I wait chat you think there's people that are like a sleep watch in the stream right now like they fell asleep while it was a home and it's just like sitting next to them while they're sleeping yes chama wake them all up watch this let me sleep son who did I just wake up"
+  },
+  {
+   "id": "lacy_30k_001",
+   "streamer": "Lacy",
+   "campaign": "lacy_pool",
+   "vod": "https://www.twitch.tv/videos/2935059680",
+   "start": 65497.0,
+   "end": 65548.0,
+   "teaser": [
+    65542.5,
+    65547.5
+   ],
+   "hook": "LACY JUST LOST 30K ON STREAM",
+   "layout": "split",
+   "cam": [
+    0.0,
+    0.0,
+    0.256,
+    0.26
+   ],
+   "accent": "&H0000E5FF",
+   "duration": 56.0,
+   "transcript": "Um, excuse you. Can't even think about breaking f***ing into my place, asshole! Go to over! My neighbor's a f***ing douchebag! Good morning. You don't speak to me, are you clear? You may civilize, shall we? What are you doing up here? Excuse you!"
+  },
+  {
+   "id": "kreek_spamL_001",
+   "streamer": "KreekCraft",
+   "campaign": "kreekcraft_cpm",
+   "vod": "https://www.twitch.tv/videos/2934981732",
+   "start": 4136.0,
+   "end": 4176.0,
+   "teaser": [
+    4157.0,
+    4163.0
+   ],
+   "hook": "HE BEGGED CHAT NOT TO SPAM L",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "overlay_url": "https://crusercontent.com/organizations/43893b4f-434d-549b-9037-4f1c62984ff2/campaigns/references/assets/a6688393-4374-492e-8ec3-059554a1870f.webp",
+   "duration": 46.0,
+   "transcript": "Do not spam L, do not spam L, do not spam L. Do not spam L. I should have brought like a better gun, bro. I should have brought a better gun to this place. Chat, don't, whatever y 'all do, do not spam L right now. Do not spam L, do not spam L. Do not spam L. Oh wait, now I got my gun, nevermind. Now he gave me my gun. Do not spam L, do not spam L, do not spam L. Do not spam L. Only spam L if you wanna marry your cousin. Oh yeah, we're cooking now."
+  },
+  {
+   "id": "kreek_cuss_001",
+   "streamer": "KreekCraft",
+   "campaign": "kreekcraft_cpm",
+   "vod": "https://www.twitch.tv/videos/2934981732",
+   "start": 104.0,
+   "end": 132.0,
+   "teaser": [
+    105.0,
+    110.5
+   ],
+   "hook": "KREEKCRAFT CUSSED ON STREAM FOR THE FIRST TIME?!",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "overlay_url": "https://crusercontent.com/organizations/43893b4f-434d-549b-9037-4f1c62984ff2/campaigns/references/assets/a6688393-4374-492e-8ec3-059554a1870f.webp",
+   "duration": 33.5,
+   "transcript": "give money to homeless people. All right, let's give money to - Whoo, you ***** Crap channel, we give money to homeless people. All right, let's give money to - Whoo, you ***** I was trying to give you money! Ay, ay, ay! Here on the Kree Crap Channel, we hate homeless people. Oh **** oh shoot, oh shoot, oh shoot, oh shoot, oh shoot, oh shoot, oh shoot, oh shoot. Lock in, lock in. Lock in, chat, lock in, oh."
+  }
+ ]
+}
