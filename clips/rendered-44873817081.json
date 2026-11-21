@@ -1,0 +1,96 @@
+{
+ "clips": [
+  {
+   "id": "kai_niko_002",
+   "streamer": "Kai Cenat",
+   "campaign": "kai_pool",
+   "vod": "https://www.twitch.tv/videos/2935613960",
+   "start": 14724.0,
+   "end": 14770.0,
+   "teaser": [
+    14745.5,
+    14750.0
+   ],
+   "hook": "NIKO BELLIC IS IN GTA 6?!",
+   "layout": "split",
+   "accent": "&H0000E5FF",
+   "cam": [
+    0.003,
+    0.4,
+    0.2,
+    0.205
+   ],
+   "duration": 50.5,
+   "transcript": "Oh my gosh, Niko! FIT OFF! Wait... Wait... Oh my gosh, Niko! Niko! Niko! Niko! What the hell?!"
+  },
+  {
+   "id": "kai_song_002",
+   "streamer": "Kai Cenat",
+   "campaign": "kai_pool",
+   "vod": "https://www.twitch.tv/videos/2935613960",
+   "start": 14928.0,
+   "end": 14969.0,
+   "teaser": [
+    14943.0,
+    14948.0
+   ],
+   "hook": "KAI HEARD HIS OWN SONG IN GTA 6",
+   "layout": "split",
+   "accent": "&H0000E5FF",
+   "cam": [
+    0.003,
+    0.4,
+    0.2,
+    0.205
+   ],
+   "duration": 46.0,
+   "transcript": "oh That's my music. That's my that would be predicts go go go That's my music. That's my um we don't know me. That's my music not me Thats so much or check. Oh my god a little"
+  },
+  {
+   "id": "kai_noammo_002",
+   "streamer": "Kai Cenat",
+   "campaign": "kai_pool",
+   "vod": "https://www.twitch.tv/videos/2935613960",
+   "start": 12264.0,
+   "end": 12302.0,
+   "teaser": [
+    12287.5,
+    12291.0
+   ],
+   "hook": "KAI HAD ONE JOB IN THE GTA 6 FINALE",
+   "layout": "split",
+   "accent": "&H0000E5FF",
+   "cam": [
+    0.003,
+    0.4,
+    0.2,
+    0.205
+   ],
+   "duration": 41.5,
+   "transcript": "Bro, you no sleep bro, you no sleep, I can't do nothing"
+  },
+  {
+   "id": "lacy_npc_002",
+   "streamer": "Lacy",
+   "campaign": "lacy_pool",
+   "vod": "https://www.twitch.tv/videos/2935059680",
+   "start": 39348.0,
+   "end": 39388.0,
+   "teaser": [
+    39350.0,
+    39354.5
+   ],
+   "hook": "A GTA 6 CHARACTER JUST ROASTED TWITCH CHAT",
+   "layout": "split",
+   "accent": "&H0000E5FF",
+   "cam": [
+    0.0,
+    0.0,
+    0.256,
+    0.26
+   ],
+   "duration": 44.5,
+   "transcript": "things set up sure about this hey happy though I guess it's in route let's get this thing set up sure about this hey happy though get that excavate over here and the rest of it yeah sure yeah look at everybody typing now look at everybody typing now yeah nah yeah weird you guys are weird ****** are chatting now yeah look at you ****** weirdos"
+  }
+ ]
+}
