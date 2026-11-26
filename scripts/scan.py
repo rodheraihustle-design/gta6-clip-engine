@@ -18,10 +18,11 @@ def resolve_vod(target):
     if target.startswith("kick:"):
         out = sh(["yt-dlp", f"https://kick.com/{target[5:]}/videos", "--flat-playlist", "--playlist-end", "1", "--print", "url"])
         return out.strip().splitlines()[0]
-    ch = target.rstrip("/").split("/")[-1]
+    ch, _, n = target.rstrip("/").split("/")[-1].partition("#")
+    n = int(n or 1)  # channel#2 = second most recent archive
     out = sh(["yt-dlp", f"https://www.twitch.tv/{ch}/videos?filter=archives&sort=time",
-              "--flat-playlist", "--playlist-end", "1", "--print", "url"])
-    return out.strip().splitlines()[0]
+              "--flat-playlist", "--playlist-end", str(n), "--print", "url"])
+    return out.strip().splitlines()[n-1]
 
 def vod_info(url):
     j = json.loads(sh(["yt-dlp", "-J", url]))
