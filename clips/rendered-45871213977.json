@@ -1,0 +1,38 @@
+{
+ "clips": [
+  {
+   "id": "rage_robbers_001",
+   "streamer": "YourRAGE",
+   "campaign": "yourrage_pool",
+   "vod": "https://www.twitch.tv/videos/2941037224",
+   "start": 15605.0,
+   "end": 15682.0,
+   "teaser": [
+    15660.0,
+    15666.0
+   ],
+   "hook": "HE HAD ONE JOB: FOLLOW THE BANK ROBBERS",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "duration": 83.0,
+   "transcript": "I have no, ever! Yo."
+  },
+  {
+   "id": "rage_heist_001",
+   "streamer": "YourRAGE",
+   "campaign": "yourrage_pool",
+   "vod": "https://www.twitch.tv/videos/2941037224",
+   "start": 18705.0,
+   "end": 18776.0,
+   "teaser": [
+    18753.0,
+    18768.0
+   ],
+   "hook": "HIS GIRL DROVE THE GETAWAY CAR IN GTA 6",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "duration": 86.0,
+   "transcript": "Roblox ready for baby. We just got low baby. We just got so low baby. We just got Hey babe you drive I can shoot these ***** tires, okay, so the way they see We just got so low baby. We just got so low, bro. Oh My god, well, I got some"
+  }
+ ]
+}
