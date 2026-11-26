@@ -1,0 +1,40 @@
+{
+ "clips": [
+  {
+   "id": "kreek_aliens_001",
+   "streamer": "KreekCraft",
+   "campaign": "kreekcraft_cpm",
+   "vod": "https://www.twitch.tv/videos/2940796044",
+   "start": 1695.0,
+   "end": 1765.0,
+   "teaser": [
+    1747.0,
+    1756.0
+   ],
+   "hook": "HE GOT ABDUCTED BY ALIENS IN GTA 6",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "overlay_url": "https://crusercontent.com/organizations/43893b4f-434d-549b-9037-4f1c62984ff2/campaigns/references/assets/a6688393-4374-492e-8ec3-059554a1870f.webp",
+   "duration": 79.0,
+   "transcript": "What the heck I got an achievement. Oh, whoa They got me they got her. I don't want I don't want to see anything. Oh god. Oh god. Oh Are you okay you remember anything? You see them I saw is there anything I can do bring me my car Yeah, okay. Just wait here. Okay Here the car Where else am I gonna go? Chat time one if you've ever been abducted by aliens It's I one if you've ever been abducted by aliens What the heck I got an achievement. Oh, whoa They got me they got me they got me they got me"
+  },
+  {
+   "id": "kreek_jupiter_001",
+   "streamer": "KreekCraft",
+   "campaign": "kreekcraft_cpm",
+   "vod": "https://www.twitch.tv/videos/2940796044",
+   "start": 4378.0,
+   "end": 4450.0,
+   "teaser": [
+    4390.0,
+    4398.0
+   ],
+   "hook": "GTA 6 SENT HIM TO JUPITER?!",
+   "layout": "fit",
+   "accent": "&H0000E5FF",
+   "overlay_url": "https://crusercontent.com/organizations/43893b4f-434d-549b-9037-4f1c62984ff2/campaigns/references/assets/a6688393-4374-492e-8ec3-059554a1870f.webp",
+   "duration": 80.0,
+   "transcript": "Okay, okay, okay Can I make it through that? Okay, okay. Okay Can I make it through that? Yeah, baby It's earth. Is that freaking Jupiter? What is this?"
+  }
+ ]
+}
